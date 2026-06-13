@@ -1,0 +1,27 @@
+# ローカル用
+
+services:
+  db:
+    image: postgres
+    platform: linux/amd64
+    container_name: inusidian-db
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: inusidian
+      POSTGRES_USER: user
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - inusidian_db_data:/var/lib/postgresql
+    networks:
+      - inusidian-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user", "-d", "inusidian"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  inusidian_db_data:
+networks:
+  inusidian-net:
