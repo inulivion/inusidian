@@ -1,29 +1,20 @@
 import { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
-  title: "INUSIDIAN",
-  description: "INUSIDIAN",
-  manifest: "/manifest.json",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  title: "Inusidian",
+  description: "SRS for dogs",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "INUSIDIAN",
+    title: "Inusidian",
   },
 };
 
@@ -33,10 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
+    <html lang="ja" className={`${notoSansJP.variable} antialiased`}>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
