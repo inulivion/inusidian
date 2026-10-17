@@ -9,7 +9,6 @@ inusidian
 ├─ kennel   # DB
 ├─ leash    # スクリプト用
 ├─ muzzle   # フロントエンド
-├─ sniff    # iOS
 └─ README.md
 ```
 
