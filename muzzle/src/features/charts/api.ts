@@ -1,3 +1,5 @@
+"use server";
+
 import { fetcher } from "@/util/fetcher";
 
 export async function getLearningHistory() {

@@ -1,8 +1,14 @@
-import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { CREATED, NO_CONTENT } from "./const";
 import { auth0 } from "@/lib/auth0";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// next/dist の内部APIに依存しない redirect() 判定 (Next.js / vinext 共通で digest が NEXT_REDIRECT で始まる)
+const isRedirectError = (error: unknown): boolean =>
+  typeof error === "object" &&
+  error !== null &&
+  typeof (error as { digest?: unknown }).digest === "string" &&
+  (error as { digest: string }).digest.startsWith("NEXT_REDIRECT");
 
 export const fetcher = {
   async get(path: string, body = {}, accessToken?: string) {
